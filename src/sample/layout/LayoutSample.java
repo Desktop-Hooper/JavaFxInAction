@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package sample;
+package sample.layout;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -67,7 +67,7 @@ import javafx.stage.Stage;
  * The resulting UI is for demonstration purposes only and is not interactive.
  */
 public class LayoutSample extends Application {
-    
+
 
     /**
      * @param args the command line arguments
