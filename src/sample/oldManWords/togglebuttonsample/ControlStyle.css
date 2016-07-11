@@ -1,0 +1,13 @@
+.toggle-button1{
+    -fx-base: #0b79ee;
+}
+.toggle-font1{
+    -fx-font-size:20px;
+}
+.toggle-button2{
+    -fx-base: lightblue;  
+}
+
+.toggle-button3{
+    -fx-base: salmon;   
+}

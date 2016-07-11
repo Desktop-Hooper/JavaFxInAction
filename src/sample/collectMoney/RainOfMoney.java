@@ -114,7 +114,7 @@ public class RainOfMoney extends Application
                 while ( moneybagIter.hasNext() )
                 {
                     Sprite moneybag = moneybagIter.next();
-                    if ( briefcase.intersects(moneybag) )
+                    if ( briefcase.intersects(moneybag) ) //判断是否碰撞
                     {
                         moneybagIter.remove();
                         score.value++;
