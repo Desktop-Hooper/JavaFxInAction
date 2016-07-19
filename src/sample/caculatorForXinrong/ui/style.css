@@ -1,0 +1,19 @@
+/** main panel right side **/
+#input-pane{
+    -fx-background-color: #f2f2f2;
+}
+.label{
+    -fx-text-fill: #000000;
+}
+.button{
+    -fx-base: #fff;
+}
+.choice-box {
+    -fx-base: #77acff;
+}
+.choice-box .label{
+    -fx-text-fill: #fdfbff;
+}
+#double-toggle{
+
+}
