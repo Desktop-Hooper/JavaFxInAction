@@ -2,6 +2,9 @@
 #input-pane{
     -fx-background-color: #f2f2f2;
 }
+#menuBar{
+    -fx-background-color: #ffffff;
+}
 .label{
     -fx-text-fill: #000000;
 }
@@ -15,5 +18,15 @@
     -fx-text-fill: #fdfbff;
 }
 #double-toggle{
-
+    -fx-text-fill: #fdfbff;
+    -fx-base: #77acff;
+}
+#input-vbox{
+    -fx-alignment:center;
+}
+#setting-hbox{
+    -fx-background-color: #ececec;
+}
+#setting-hbox .Label{
+    -fx-opacity:0.8;
 }

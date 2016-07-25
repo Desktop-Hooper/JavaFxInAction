@@ -1,18 +1,21 @@
 package sample.caculatorForXinrong.ui;
 
+import javafx.animation.ScaleTransition;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 /**
@@ -32,14 +35,14 @@ public class Home extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         BorderPane border = new BorderPane();
-        border.setPrefHeight(500);
-        border.setPrefWidth(700);
-
-
+        border.setPrefWidth(0);
+        border.setPrefHeight(2000);
         border.setRight(rightPart());
 
-        Scene scene = new Scene(border);
+        Scene scene = new Scene(new VBox(),700,500);
         scene.getStylesheets().add("sample/caculatorForXinrong/ui/style.css");
+
+        ((VBox) scene.getRoot()).getChildren().addAll(loadMenuBar(),border);
         stage.setScene(scene);
 
         Image image = new Image(Home.class.getResourceAsStream("../resource/icon/favicons.png"));
@@ -48,42 +51,64 @@ public class Home extends Application{
         stage.show();
     }
 
+    public MenuBar loadMenuBar(){
+        MenuBar menuBar = new MenuBar();
 
-    public BorderPane rightPart(){
-        BorderPane borderPane = new BorderPane();
-        borderPane.setMaxWidth(300);
-        borderPane.setCenter(inputPane());
-        borderPane.setBottom(loadSubmitButton());
+        menuBar.setId("menuBar");
 
-        //bottom
-        return  borderPane;
+        // --- Menu File
+        Menu menuSetting = new Menu("费率设置");
+        MenuItem yearRate = new MenuItem("投资年化利率");
+        MenuItem vipRate = new MenuItem("VIP等级系数");
+        MenuItem serverRate = new MenuItem("投资服务费率");
+        MenuItem offRate = new MenuItem("积品汇折扣");
+        MenuItem scaleRate = new MenuItem("小数位精度");
+        menuSetting.getItems().addAll(yearRate,vipRate,serverRate,offRate,scaleRate);
+        // --- Menu Edit
+        Menu menuAbout = new Menu("关于");
+
+        menuBar.getMenus().addAll(menuSetting, menuAbout);
+
+        return menuBar;
     }
 
-    public FlowPane inputPane(){
-        FlowPane flow = new FlowPane();
-        flow.setPadding(new Insets(15,0,5,10));
-        flow.setId("input-pane");
-        flow.setVgap(10);
-        flow.setHgap(10);
-        flow.setPrefWrapLength(170); // preferred width allows for two columns
-        flow.setPrefWidth(100);
-        flow.setMaxWidth(300);
+    public Pane rightPart(){
+        BorderPane rightPartBorderPane = new BorderPane();
+        rightPartBorderPane.setId("input-pane");
+        rightPartBorderPane.setMaxWidth(260);
+        rightPartBorderPane.setCenter(inputPane());
+        rightPartBorderPane.setBottom(loadSubmitButton());
 
-        loadInputNode(flow);
-
-
-        return flow;
+        return  rightPartBorderPane;
     }
 
-    public HBox loadSubmitButton(){
-        HBox submitB = new HBox();
-        Button submitBtn = new Button("投资");
-        Button rechargeBtn = new Button("转让");
-        Button resetBtn = new Button("重置");
 
-        submitB.getChildren().addAll(submitBtn,rechargeBtn,resetBtn);
+    public Pane inputPane(){
+        VBox vBox = new VBox();
+        vBox.setId("input-vbox");
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(20);
+        loadInputNode(vBox);
 
-        return submitB;
+        return vBox;
+    }
+
+    public Pane loadSubmitButton(){
+        Button submitBtn = new Button("投资查询");
+        Button rechargeBtn = new Button("转让查询");
+        Button resetBtn = new Button("清空输入");
+
+        FlowPane flowPane = new FlowPane();
+        flowPane.setAlignment(Pos.BASELINE_CENTER);
+        flowPane.setPadding(new Insets(10,10,20,10));
+        flowPane.setHgap(15);
+        flowPane.setVgap(20);
+        flowPane.setPrefWrapLength(70);
+        flowPane.setPrefWidth(70);
+        flowPane.setMaxWidth(300);
+        flowPane.getChildren().addAll(submitBtn,rechargeBtn,resetBtn);
+
+        return flowPane;
     }
 
     public void loadInputNode(Pane pane){
@@ -93,6 +118,7 @@ public class Home extends Application{
         HBox investMoneyHB = new HBox();
         investMoneyHB.getChildren().addAll(investMoneyLB, investMoneyTF);
         investMoneyHB.setSpacing(3);
+        investMoneyHB.setAlignment(Pos.CENTER);
 
         Label monthLB = new Label("项目月数:");
         TextField monthTF = new TextField ();
@@ -100,6 +126,7 @@ public class Home extends Application{
         HBox monthHB = new HBox();
         monthHB.getChildren().addAll(monthLB, monthTF);
         monthHB.setSpacing(3);
+        monthHB.setAlignment(Pos.CENTER);
 
         Label dayLB = new Label("项目天数:");
         TextField dayTF = new TextField ();
@@ -107,6 +134,7 @@ public class Home extends Application{
         HBox dayHB = new HBox();
         dayHB.getChildren().addAll(dayLB, dayTF);
         dayHB.setSpacing(3);
+        dayHB.setAlignment(Pos.CENTER);
 
         Label vipLB = new Label("VIP等级:");
         TextField vipTF = new TextField ();
@@ -114,6 +142,7 @@ public class Home extends Application{
         HBox vipHB = new HBox();
         vipHB.getChildren().addAll(vipLB, vipTF);
         vipHB.setSpacing(8);//
+        vipHB.setAlignment(Pos.CENTER);
 
         Label yearRateLB = new Label("年化率:");
         ChoiceBox yearRateCB = new ChoiceBox();
@@ -124,7 +153,7 @@ public class Home extends Application{
         HBox yearRateHB = new HBox();
         yearRateHB.getChildren().addAll(yearRateLB, yearRateCB);
         yearRateHB.setSpacing(20);//
-
+        yearRateHB.setAlignment(Pos.CENTER);
 
         HBox doubleScoreHB = new HBox();
         ToggleButton doubleScoreTGB = new ToggleButton("双倍积分");
@@ -133,12 +162,15 @@ public class Home extends Application{
         doubleScoreTGB.setId("double-toggle");
         doubleScoreHB.setMargin(doubleScoreTGB,new Insets(0, 0, 0, 60));
         doubleScoreHB.getChildren().add(doubleScoreTGB);
-//        HBox separatorHB = new HBox();
-//        Separator separator = new Separator();
-//        separator.setPrefWidth(100);
-//        separator.setOrientation(Orientation.HORIZONTAL);
-//        separatorHB.getChildren().add(separator);
+        doubleScoreHB.setAlignment(Pos.CENTER);
 
+        Label holdMonthLB = new Label("持有月数:");
+        TextField holdMonthTF = new TextField ();
+        holdMonthTF.setMaxWidth(80);
+        HBox holdMonthHB = new HBox();
+        holdMonthHB.getChildren().addAll(holdMonthLB, holdMonthTF);
+        holdMonthHB.setSpacing(3);//
+        holdMonthHB.setAlignment(Pos.CENTER);
 
         Label holdDayLB = new Label("持有天数:");
         TextField holdDayTF = new TextField ();
@@ -146,15 +178,23 @@ public class Home extends Application{
         HBox holdDayHB = new HBox();
         holdDayHB.getChildren().addAll(holdDayLB, holdDayTF);
         holdDayHB.setSpacing(3);//
+        holdDayHB.setAlignment(Pos.CENTER);
 
-        
+        HBox separatorHB = new HBox();
+        Separator separator = new Separator();
+        separator.setPrefWidth(240);
+        separator.setOrientation(Orientation.HORIZONTAL);
+        separatorHB.getChildren().add(separator);
+        separatorHB.setAlignment(Pos.CENTER);
+
         pane.getChildren().add(investMoneyHB);
         pane.getChildren().add(monthHB);
         pane.getChildren().add(dayHB);
         pane.getChildren().add(vipHB);
         pane.getChildren().add(yearRateHB);
         pane.getChildren().add(doubleScoreHB);
-//        pane.getChildren().add(separatorHB);
+        pane.getChildren().add(separatorHB);
+        pane.getChildren().add(holdMonthHB);
         pane.getChildren().add(holdDayHB);
     }
 }
