@@ -61,7 +61,6 @@ public class Calculator {
 		SERVER_CHARGER = new BigDecimal[serverCharge.size()];
 		for(int i=0;i<serverCharge.size();i++){
 			SERVER_CHARGER[i] = new BigDecimal(serverCharge.get(SERVER_NAME+i));
-			System.out.println("服务费 "+SERVER_CHARGER[i]);
 		}
 	}
 
@@ -70,7 +69,6 @@ public class Calculator {
 		JI_PIN_HUI_OFF = new BigDecimal[jipinhuiOff.size()];
 		for(int i=0;i<jipinhuiOff.size();i++){
 			JI_PIN_HUI_OFF[i] = new BigDecimal(jipinhuiOff.get(JIPINHUI_NAME+i));
-			System.out.println("极品会 "+JI_PIN_HUI_OFF[i]);
 		}
 	}
 
@@ -329,24 +327,24 @@ public class Calculator {
 		result.setGrowScore(growScore.toString());
 		result.setIncome(income.toString());
 		result.setScore(score.toString());
-		result.setServerCharge(serverCharge.toString());
+		result.setServerCharger(serverCharge.toString());
 
 		result.setActualIncomeInfo("投资收益["+income.toString()+"] - 投资服务费["+serverCharge.toString()+"] = "+actualIncome.toString());
 
-		result.setActualYearIncomeInfo("<html>实际投资收益["+actualIncome.toString()+"] × 12 "
-				+ "÷ (投资月数["+month+"] + 投资天数["+day+"] ÷ 30) <p>÷ 投资本金["+investMoney.toString()+"] = "+actualYearIncome.toString()+"<p></html>");
+		result.setActualYearIncomeInfo("实际投资收益["+actualIncome.toString()+"] × 12 "
+				+ "÷ (投资月数["+month+"] + 投资天数["+day+"] ÷ 30) ÷ 投资本金["+investMoney.toString()+"] = "+actualYearIncome.toString()+"");
 
-		result.setActualYearIncomeWithRewardInfo("<html>( ( 积分["+score.toString()+"] ÷ (40000 × 积品汇折扣["+JI_PIN_HUI_OFF[vip].toString()+"] )× 100 ) "
-				+ "<p>+ 实际投资收益["+actualIncome.toString()+"] ) × 12 "
-				+ "÷ ( 项目月数["+month+"] + 项目天数["+day+"] ÷ 30 )</p><p> "
-				+ "÷ 投资本金["+investMoney.toString()+"] = "+actualYearIncomeWithReward.toString()+"</p></html>");
+		result.setActualYearIncomeWithRewardInfo("( ( 积分["+score.toString()+"] ÷ (40000 × 积品汇折扣["+JI_PIN_HUI_OFF[vip].toString()+"] )× 100 ) "
+				+ "+ 实际投资收益["+actualIncome.toString()+"] ) × 12 "
+				+ "÷ ( 项目月数["+month+"] + 项目天数["+day+"] ÷ 30 ) "
+				+ "÷ 投资本金["+investMoney.toString()+"] = "+actualYearIncomeWithReward.toString()+"");
 
-		result.setGrowScoreInfo("<html>投资本金["+investMoney.toString()+"] × vip等级系数["+VIP_RATIO[vip].toString()+"]  "
-				+ "÷ 120 <p>× (30天 × 项目月数["+month+"] + 项目天数["+day+"])  = "+growScore.toString()+"</p></html>");
+		result.setGrowScoreInfo("投资本金["+investMoney.toString()+"] × vip等级系数["+VIP_RATIO[vip].toString()+"]  "
+				+ "÷ 120 × (30天 × 项目月数["+month+"] + 项目天数["+day+"])  = "+growScore.toString()+"");
 
-		result.setIncomeInfo("<html>投资本金["+investMoney.toString()+"] × 年化收益率["+yearIncome+"] × "
-				+ "项目月数["+month+"] ÷ 12 <p>+ 投资本金["+investMoney.toString()+"]  "
-				+ "× 年化收益率["+yearIncome+"]</p><p> ÷ 365天 × 项目天数["+day+"] = "+income.toString()+"</p></html>");
+		result.setIncomeInfo("投资本金["+investMoney.toString()+"] × 年化收益率["+yearIncome+"] × "
+				+ "项目月数["+month+"] ÷ 12 + 投资本金["+investMoney.toString()+"]  "
+				+ "× 年化收益率["+yearIncome+"] ÷ 365天 × 项目天数["+day+"] = "+income.toString()+"");
 
 		result.setScoreInfo("投资本金["+investMoney.toString()+"] × 0.25 × 项目月数["+month+"]  × VIP系数["+VIP_RATIO[vip].toString()+"] = "+score.toString());
 
@@ -384,48 +382,48 @@ public class Calculator {
 		result.setIncome(income.toString());
 		result.setScore(score.toString());
 		result.setGrowScore(growScore.toString());
-		result.setInvestServerCharge(investServerCost.toString());
-		result.setInvestIncome(investIncome.toString());
-		result.setActualIncomeRatio(actualYearRatio.multiply(new BigDecimal(100)).toString() + "%");
+		result.setServerCharger(investServerCost.toString());
+		result.setActualIncome(investIncome.toString());
+		result.setActualYearIncome(actualYearRatio.multiply(new BigDecimal(100)).toString() + "%");
 		result.setScoreRefund(scoreRefund.toString());
 		result.setRechargeServerCharge(rechargeServer.toString());
-		result.setActualYearIncomeWithRewar(actualYearRatioWithReward.multiply(new BigDecimal(100)).toString() + "%");
+		result.setActualYearIncomeWithReward(actualYearRatioWithReward.multiply(new BigDecimal(100)).toString() + "%");
 		result.setActualYearIncomeWithoutServer(actualYearRatioWithoutServer.multiply(new BigDecimal(100)).toString() + "%");
 		result.setIncomeAfterRecharge(rechargeFinalIncome.toString());
 
-		result.setIncomeInfo("<html>投资本金["+investMoney.toString()+"] × 年化收益率["+yearIncome+"] × "
-				+ "持有月数["+handingMonth+"] ÷ 12 <p>+ 投资本金["+investMoney.toString()+"]  "
-				+ "× 年化收益率["+yearIncome+"]</p><p> ÷ 365天 × 持有天数["+handingDay+"] = "+income.toString()+"</p></html>");
+		result.setIncomeInfo("投资本金["+investMoney.toString()+"] × 年化收益率["+yearIncome+"] × "
+				+ "持有月数["+handingMonth+"] ÷ 12 + 投资本金["+investMoney.toString()+"]  "
+				+ "× 年化收益率["+yearIncome+"] ÷ 365天 × 持有天数["+handingDay+"] = "+income.toString()+"");
 
 		result.setScoreInfo("投资本金["+investMoney.toString()+"] × 0.25 × 项目月数["+month+"]  × VIP系数["+VIP_RATIO[vip].toString()+"] = "+score.toString());
 
-		result.setGrowScoreInfo("<html>投资本金["+investMoney.toString()+"] × vip等级系数["+VIP_RATIO[vip].toString()+"]  "
-				+ "÷ 120 <p>× (30天 × 项目月数["+month+"] + 项目天数["+day+"]) = "+growScore.toString()+"</p></html>");
+		result.setGrowScoreInfo("投资本金["+investMoney.toString()+"] × vip等级系数["+VIP_RATIO[vip].toString()+"]  "
+				+ "÷ 120 × (30天 × 项目月数["+month+"] + 项目天数["+day+"]) = "+growScore.toString()+"");
 
-		result.setInvestServerChargeInfo("投资收益["+investIncome.toString()+"]  × 投资服务费率["+SERVER_CHARGER[vip].toString()+"] = "+investServerCost.toString());
+		result.setServerChargerInfo("投资收益["+investIncome.toString()+"]  × 投资服务费率["+SERVER_CHARGER[vip].toString()+"] = "+investServerCost.toString());
 
-		result.setInvestIncomeInfo("投资收益["+income.toString()+"] - 投资服务费["+investMoney.toString()+"] = "+investIncome.toString());
+		result.setActualIncomeInfo("投资收益["+income.toString()+"] - 投资服务费["+investServerCost.toString()+"] = "+investIncome.toString());
 
-		result.setActualIncomeRatioInfo("<html>实际收益["+rechargeFinalIncome.toString()+"] × 12 "
-				+ "÷ (持有月数["+handingMonth+"] + 持有天数["+handingDay+"] ÷ 30) <p>÷ 投资本金["+investMoney.toString()+"] = "+actualYearRatio.toString()+"</p></html>");
+		result.setActualYearIncomeInfo("实际收益["+rechargeFinalIncome.toString()+"] × 12 "
+				+ "÷ (持有月数["+handingMonth+"] + 持有天数["+handingDay+"] ÷ 30) ÷ 投资本金["+investMoney.toString()+"] = "+actualYearRatio.toString()+"");
 
-		result.setScoreRefundInfo("<html>(项目月数["+month+"] + 项目天数["+day+"] ÷30 - 持有月["+handingMonth+"] <p>- 持有天["+handingDay+"]  ÷ 30)"
-				+ " × 投资金额["+investMoney+"]  </p><p>× vip系数["+VIP_RATIO[vip]+"]  × 0.25 ÷ 1000 × 3 = "+scoreRefund.toString()+"</p></html>");
+		result.setScoreRefundInfo("(项目月数["+month+"] + 项目天数["+day+"] ÷30 - 持有月["+handingMonth+"] - 持有天["+handingDay+"]  ÷ 30)"
+				+ " × 投资金额["+investMoney+"]  × vip系数["+VIP_RATIO[vip]+"]  × 0.25 ÷ 1000 × 3 = "+scoreRefund.toString()+"");
 
 		result.setRechargeServerChargeInfo("投资收益["+income.toString()+"] × 0.1 = "+rechargeServer.toString());
 
-		result.setActualYearIncomeWithRewarInfo("<html>( ( 积分["+score.toString()+"] ÷ (40000 × 积品汇折扣["+JI_PIN_HUI_OFF[vip].toString()+"] )× 100 ) "
-				+ "<p>+ 实际投资收益["+rechargeFinalIncome.toString()+"] ) × 12 "
-				+ "÷ ( 项目月数["+handingMonth+"] + 项目天数["+handingDay+"] ÷ 30 )</p><p> "
-				+ "÷ 投资本金["+investMoney.toString()+"] = "+actualYearRatioWithReward.toString()+"</p></html>");
+		result.setActualYearIncomeWithRewardInfo("( ( 积分["+score.toString()+"] ÷ (40000 × 积品汇折扣["+JI_PIN_HUI_OFF[vip].toString()+"] )× 100 ) "
+				+ "+ 实际投资收益["+rechargeFinalIncome.toString()+"] ) × 12 "
+				+ "÷ ( 项目月数["+handingMonth+"] + 项目天数["+handingDay+"] ÷ 30 ) "
+				+ "÷ 投资本金["+investMoney.toString()+"] = "+actualYearRatioWithReward.toString()+"");
 
-		result.setActualYearIncomeWithoutServerInfo("<html>( ( 积分["+score.toString()+"] ÷ (40000 × 积品汇折扣["+JI_PIN_HUI_OFF[vip].toString()+"] )× 100 ) "
-				+ "<p>+ 实际投资收益["+rechargeFinalIncome.toString()+"] + 投资服务费["+investServerCost.toString()+"] )</p><p> × 12 "
-				+ "÷ ( 项目月数["+handingMonth+"] + 项目天数["+handingDay+"] ÷ 30 )</p><p> "
-				+ "÷ 投资本金["+investMoney.toString()+"] = "+actualYearRatioWithoutServer.toString()+"</p></html>");
+		result.setActualYearIncomeWithoutServerInfo("( ( 积分["+score.toString()+"] ÷ (40000 × 积品汇折扣["+JI_PIN_HUI_OFF[vip].toString()+"] )× 100 ) "
+				+ "+ 实际投资收益["+rechargeFinalIncome.toString()+"] + 投资服务费["+investServerCost.toString()+"] ) × 12 "
+				+ "÷ ( 项目月数["+handingMonth+"] + 项目天数["+handingDay+"] ÷ 30 ) "
+				+ "÷ 投资本金["+investMoney.toString()+"] = "+actualYearRatioWithoutServer.toString()+"");
 
-		result.setIncomeAfterRechargeInfo("<html>投资收益["+investMoney.toString()+"] - 转让服务费["+rechargeServer.toString()+"]"
-				+ "<p>- 投资服务费["+investServerCost.toString()+"] - 积分补偿金["+scoreRefund.toString()+"] = "+rechargeFinalIncome.toString()+"</p></html>");
+		result.setIncomeAfterRechargeInfo("投资收益["+investMoney.toString()+"] - 转让服务费["+rechargeServer.toString()+"]"
+				+ "- 投资服务费["+investServerCost.toString()+"] - 积分补偿金["+scoreRefund.toString()+"] = "+rechargeFinalIncome.toString()+"");
 
 		return result;
 	}

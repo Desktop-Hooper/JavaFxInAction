@@ -6,12 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class PropertiesUtil {
 
@@ -21,12 +16,10 @@ public class PropertiesUtil {
 		List<String> result = new ArrayList<String>();
 		try {
 			pps = new OrderedProperties();
-			pps.load(new FileInputStream(filePath));
-			Enumeration enum1 = pps.propertyNames();
-			while (enum1.hasMoreElements()) {
-				String strKey = (String) enum1.nextElement();
+			pps.load(PropertiesUtil.class.getResourceAsStream(filePath));
+			for(Object obj:pps.keySet()){
+				String strKey = (String) obj;
 				String strValue = pps.getProperty(strKey);
-				System.out.println(strKey + "=" + strValue);
 				result.add(strValue);
 			}
 		} catch (FileNotFoundException e) {
@@ -39,17 +32,32 @@ public class PropertiesUtil {
 		return result;
 	}
 
+	public static List<String> getPropertiesKeyToList(String filePath) {
+		List<String> result = new ArrayList<>();
+		try {
+			pps = new OrderedProperties();
+			pps.load(PropertiesUtil.class.getResourceAsStream(filePath));
+			for(Object obj:pps.keySet()){
+				String strKey = (String) obj;
+				result.add((String)obj);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 	public static Map<String, String> getPropertiesValueToMap(String filePath) {
 		Map<String, String> result = new HashMap<String, String>();
 		try {
 			pps = new OrderedProperties();
 			pps.load(PropertiesUtil.class.getResourceAsStream(filePath));
-			Enumeration enum1 = pps.propertyNames();
-			while (enum1.hasMoreElements()) {
-				String strKey = (String) enum1.nextElement();
+			for(Object obj:pps.keySet()){
+				String strKey = (String) obj;
 				String strValue = pps.getProperty(strKey);
-				System.out.println("Properties Util 52:"+strKey + "=" + strValue);
-				result.put(strKey, strValue);
+				result.put(strKey,strValue);
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -65,11 +73,10 @@ public class PropertiesUtil {
 	public static void modifyPropertiesValue(String filePath,
 			Map<String, String> value) throws IOException {
 		if (pps == null) {
-			pps = new Properties();
+			pps = new OrderedProperties();
 			InputStream in = new FileInputStream(filePath);
 			pps.load(in);
 			in.close();
-
 		}
 		OutputStream fos = null;
 		for (String key : value.keySet()) {
@@ -85,11 +92,11 @@ public class PropertiesUtil {
 			Map<String, String> value) throws IOException {
         FileOutputStream out = new FileOutputStream(filePath);
         FileInputStream in = new FileInputStream(filePath);
-        Properties props = new Properties();
+        Properties props = new OrderedProperties();
         props.load(in);
         in.close();
         for(String key:value.keySet()){
-         props.setProperty(key, value.get(key));
+         props.put(key, value.get(key));
         }
         props.store(out, null);
         out.close();
@@ -108,7 +115,7 @@ public class PropertiesUtil {
 
 		int i = 1;
 		for (String val : value) {
-			pps.setProperty(nameSalt + i, val);
+			pps.put(nameSalt + i, val);
 			i++;
 		}
 		fos = new FileOutputStream(filePath);

@@ -31,12 +31,6 @@ public class InvestingResult {
 	public void setActualIncome(String actualIncome) {
 		this.actualIncome = actualIncome;
 	}
-	public String getServerCharge() {
-		return serverCharger;
-	}
-	public void setServerCharge(String severCharge) {
-		this.serverCharger = severCharge;
-	}
 	public String getScore() {
 		return score;
 	}

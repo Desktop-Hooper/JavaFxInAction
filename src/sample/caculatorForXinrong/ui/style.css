@@ -2,19 +2,22 @@
 #input-pane{
     -fx-background-color: #f2f2f2;
 }
+.right-pane{
+    -fx-background-color: #f2f2f2;
+}
 #menuBar{
     -fx-background-color: #ffffff;
 }
 .label{
     -fx-text-fill: #000000;
 }
-.button{
+#input-pane .button{
     -fx-base: #fff;
 }
-.choice-box {
+#input-pane .choice-box {
     -fx-base: #77acff;
 }
-.choice-box .label{
+#input-pane .choice-box .label{
     -fx-text-fill: #fdfbff;
 }
 #double-toggle{
@@ -24,9 +27,27 @@
 #input-vbox{
     -fx-alignment:center;
 }
-#setting-hbox{
-    -fx-background-color: #ececec;
+
+.error-msg{
+    -fx-text-fill: #ff3f19;
 }
-#setting-hbox .Label{
-    -fx-opacity:0.8;
+
+.xinrong-background{
+    -fx-background-image: url("../resource/icon/background.png");
+}
+#result-value-pane .label{
+    -fx-font-family:monospace;
+    -fx-font-size: 14;
+    -fx-text-fill: #5d5d5d;
+}
+#result-value-pane .result-value{
+    -fx-text-fill: #0b79ee;
+}
+#formula-pane .result-value{
+    -fx-text-fill: #0b79ee;
+}
+.result-button{
+    -fx-text-fill: #fdfbff;
+    -fx-base: #77acff;
+    -fx-opacity: 0.7;
 }
