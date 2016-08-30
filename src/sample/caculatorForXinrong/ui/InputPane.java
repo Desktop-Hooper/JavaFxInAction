@@ -166,7 +166,7 @@ public class InputPane{
         FlowPane buttonPane = new FlowPane();
         buttonPane.setAlignment(Pos.BASELINE_CENTER);
         buttonPane.setPadding(new Insets(10,10,20,10));
-        buttonPane.setHgap(15);
+        buttonPane.setHgap(10);
         buttonPane.setVgap(20);
         buttonPane.setPrefWrapLength(70);
         buttonPane.setPrefWidth(70);

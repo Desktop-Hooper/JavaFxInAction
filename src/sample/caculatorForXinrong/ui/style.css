@@ -13,6 +13,7 @@
 
 .xinrong-background{
     -fx-background-image: url("../resource/icon/background.png");
+    -fx-background-color: white;
 }
 
 /** main panel right side **/

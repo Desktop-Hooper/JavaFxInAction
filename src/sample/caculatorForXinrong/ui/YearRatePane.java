@@ -3,6 +3,7 @@ package sample.caculatorForXinrong.ui;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -150,8 +151,13 @@ public class YearRatePane{
 
     private void registerSaveEvent(final Button saveBtn){
         saveBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
+            public void handle(MouseEvent event) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("保存成功");
+                alert.setHeaderText("Information Alert");
+                String s ="This is an example of JavaFX 8 Dialogs... ";
+                alert.setContentText(s);
+                alert.show();
 
             }
         });

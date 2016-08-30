@@ -85,7 +85,6 @@ public class ResultPane {
     private void buildFace(){
         childrenPaneOfResult = new VBox();
         childrenPaneOfResult.setId("result-value-pane");
-        childrenPaneOfResult.getStyleClass().add("xinrong-background");
         childrenPaneOfResult.setAlignment(Pos.CENTER);
         childrenPaneOfResult.setSpacing(15);
 
@@ -193,6 +192,7 @@ public class ResultPane {
 
         pane = new BorderPane();
         pane.setId("result-pane");
+        pane.getStyleClass().add("xinrong-background");
         pane.setCenter(childrenPaneOfResult);
         pane.setBottom(childrenPaneOfButton);
     }
@@ -268,7 +268,7 @@ public class ResultPane {
         FadeTransition fadeTransition =
                 new FadeTransition(Duration.millis(4000), node);
         fadeTransition.setFromValue(1.0f);
-        fadeTransition.setToValue(0.75f);
+        fadeTransition.setToValue(0.8f);
         fadeTransition.setCycleCount(-1);
         fadeTransition.setAutoReverse(true);
         fadeTransition.play();
@@ -280,10 +280,10 @@ public class ResultPane {
        for(Node node : pane.getChildren()) {
            ScaleTransition scaleTransition =
                    new ScaleTransition(Duration.millis(6000), node);
-           scaleTransition.setFromX(1);
-           scaleTransition.setFromY(1);
-           scaleTransition.setToX(1.1);
-           scaleTransition.setToY(1.2);
+           scaleTransition.setFromX(1.08);
+           scaleTransition.setFromY(1.08);
+           scaleTransition.setToX(1.16);
+           scaleTransition.setToY(1.24);
            scaleTransition.setCycleCount(-1);
            scaleTransition.setAutoReverse(true);
            scaleTransition.play();

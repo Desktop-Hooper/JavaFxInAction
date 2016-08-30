@@ -52,8 +52,8 @@ public class Home extends Application{
         homePane = new BorderPane();
         homePane.setPrefWidth(0);
         homePane.setPrefHeight(2000);
-        homePane.setRight(yearRatePane.getRightPart());
-        homePane.setCenter(yearRatePane.getResultPane());
+        homePane.setRight(homePaneRight.getPane());
+        homePane.setCenter(homePaneCenter.getPane());
 
         Scene scene = new Scene(new VBox(),700,500);
         scene.getStylesheets().add("sample/caculatorForXinrong/ui/style.css");
