@@ -110,7 +110,7 @@ public class InputPane{
         yearRateCB.setScaleX(1.1);
         yearRateCB.setItems(FXCollections.observableArrayList(0.132,0.25));
         yearRateCB.setMaxWidth(90);
-        yearRateCB.getSelectionModel().selectFirst();//默认第一个
+        yearRateCB.getSelectionModel().select(0.25);//默认第一个
         HBox yearRateHB = new HBox();
         yearRateHB.getChildren().addAll(yearRateLB, yearRateCB);
         yearRateHB.setSpacing(20);//

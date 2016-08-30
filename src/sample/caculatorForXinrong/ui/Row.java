@@ -20,6 +20,7 @@ public class Row {
         label = new Label(name);
         textField = new TextField(value);
         hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
         hBox.getChildren().addAll(label,textField);
     }
 
@@ -28,6 +29,7 @@ public class Row {
         textField = new TextField(value);
         hBox = new HBox();
         hBox.setSpacing(hgap);
+        hBox.setAlignment(Pos.CENTER);
         hBox.getChildren().addAll(label,textField);
     }
 
@@ -44,4 +46,13 @@ public class Row {
         return hBox;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Row{");
+        sb.append("label=").append(label);
+        sb.append(", textField=").append(textField);
+        sb.append(", hBox=").append(hBox);
+        sb.append('}');
+        return sb.toString();
+    }
 }

@@ -1,8 +1,22 @@
+/** common **/
+.right-pane{
+    -fx-background-color: #f2f2f2;
+    -fx-spacing: 25px;
+    -fx-alignment: center;
+    -fx-max-height: 1080px;
+    -fx-pref-width: 200px;
+}
+.right-pane .button{
+    -fx-base: #77acff;
+}
+
+
+.xinrong-background{
+    -fx-background-image: url("../resource/icon/background.png");
+}
+
 /** main panel right side **/
 #input-pane{
-    -fx-background-color: #f2f2f2;
-}
-.right-pane{
     -fx-background-color: #f2f2f2;
 }
 #menuBar{
@@ -10,6 +24,9 @@
 }
 .label{
     -fx-text-fill: #000000;
+}
+.error-msg{
+    -fx-text-fill: #ff3f19;
 }
 #input-pane .button{
     -fx-base: #fff;
@@ -27,14 +44,9 @@
 #input-vbox{
     -fx-alignment:center;
 }
+/** main panel right side  end **/
+/** main panel center side  end **/
 
-.error-msg{
-    -fx-text-fill: #ff3f19;
-}
-
-.xinrong-background{
-    -fx-background-image: url("../resource/icon/background.png");
-}
 #result-value-pane .label{
     -fx-font-family:monospace;
     -fx-font-size: 14;
@@ -51,3 +63,11 @@
     -fx-base: #77acff;
     -fx-opacity: 0.7;
 }
+/** main panel center side  end **/
+/** year panel    end **/
+.year-rate-del{
+    -fx-graphic: url("../resource/icon/del.png");
+    -fx-base: #f2f2f2;
+}
+
+/** year panel    end **/
